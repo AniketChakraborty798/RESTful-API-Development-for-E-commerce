@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  title: E-commerce Product API
+  description: A RESTful API for managing e-commerce products
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Development Server
+paths:
+  /products:
+    get:
+      summary: Retrieve a list of products
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+    post:
+      summary: Add a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewProduct'
+      responses:
+        '201':
+          description: Created product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /products/{id}:
+    put:
+      summary: Update an existing product
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Product ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewProduct'
+      responses:
+        '200':
+          description: Updated product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Product not found
+    delete:
+      summary: Remove a product
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Product ID
+      responses:
+        '204':
+          description: Product successfully deleted
+        '404':
+          description: Product not found
+
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - id
+        - name
+        - price
+        - availability
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the product
+        name:
+          type: string
+          description: Name of the product
+        description:
+          type: string
+          description: Description of the product
+        price:
+          type: number
+          format: float
+          description: Price of the product in USD (must be positive)
+        availability:
+          type: boolean
+          description: Whether the product is available in stock
+    NewProduct:
+      type: object
+      required:
+        - name
+        - price
+      properties:
+        name:
+          type: string
+          description: Name of the product
+        description:
+          type: string
+          description: Description of the product
+        price:
+          type: number
+          format: float
+          description: Price of the product in USD (must be positive)
+        availability:
+          type: boolean
+          description: Whether the product is available in stock
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+          description: Array of validation error messages

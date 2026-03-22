@@ -11,7 +11,7 @@ Managing product data manually or with poorly structured systems leads to:
 - Inconsistent product information  
 - High chances of human error  
 - Slow data retrieval  
-- Difficulty scaling with growing inventory  
+- Difficulty scaling with growing inventor  
 
 This project solves these issues by introducing a standardized API for product management.
 

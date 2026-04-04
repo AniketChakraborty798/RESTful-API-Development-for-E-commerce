@@ -1,7 +1,7 @@
 # 🛒 RESTful API for E-commerce Product Management
 
 ## 📌 Overview
-This project is a RESTful API designed to manage product data in an e-commerce platform. As product catalogs grow, maintaining consistency, accuracy, and fast access becomes difficult. This API provides a structured and scalable solution for handling product information efficiently.
+This project is a RESTful API designed to manage product data in an e-commerce platform. As product catalogs grow, maintaining consistency, accuracy, and fast access becomes difficult. This API provides a structured and scalable solution for handling product information efficiently
 
 ---
 
